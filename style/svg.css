@@ -1,0 +1,38 @@
+.selectFileSVG {
+    background-image: url("../svg/hiring.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30%;
+    height: 30vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-size: auto 95%;
+    min-width:150px;
+    min-height:150px;
+
+}
+
+.dropZone{
+    background-image: url("../svg/drag.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+}
+.dropZone:hover {
+    background-image: url("../svg/doc.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+    transition:0.5s;
+}
+
+.dropFile {
+    border: 5px solid #0bff43;
+    background-color: rgba(11, 255, 67, 0.31);
+    background-image: url("../svg/okay.svg");
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
