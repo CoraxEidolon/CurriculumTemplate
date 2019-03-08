@@ -36,3 +36,16 @@
     background-position: center;
 }
 
+.questionSVG{
+    background-image: url("../svg/question-mark.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}
+
+.okSVG{
+    background-image: url("../svg/thumbs-up.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80% 80%;
+}

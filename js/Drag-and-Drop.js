@@ -1,5 +1,4 @@
 var GLOBAL_file;//Глобальная переменная, хранит выбранный файл
-
 /**
  * drop Событие вызывается, когда пользователь отпускает файл. Если браузер поддерживает DataTransferItemList
  * интерфейс, getAsFile() метод используется для доступа к  файлу; в противном случае свойство DataTransfer
@@ -12,16 +11,16 @@ function dropHandler(ev) {
     ev.preventDefault();
     if (ev.dataTransfer.items) {
         // Используем интерфейс DataTransferItemList для доступа к файлу
-            // Если перетянутые элементы не являются файлами, отклоните их
-            if (ev.dataTransfer.items[0].kind === 'file') {
-                var file = ev.dataTransfer.items[0].getAsFile();
-                GLOBAL_file=file;
-                console.log(GLOBAL_file);
-            }
+        // Если перетянутые элементы не являются файлами, отклоните их
+        if (ev.dataTransfer.items[0].kind === 'file') {
+            var file = ev.dataTransfer.items[0].getAsFile();
+            GLOBAL_file = file;
+            componentInitialization()
+        }
     } else {
         // Используем интерфейс DataTransferItemList для доступа к файлу
-            GLOBAL_file=ev.dataTransfer.files[0];
-            console.log(GLOBAL_file);
+        GLOBAL_file = ev.dataTransfer.files[0];
+        componentInitialization();
     }
 }
 /**
@@ -29,8 +28,7 @@ function dropHandler(ev) {
  * @param ev
  */
 function dragOverHandler(ev) {
-    console.log('File(s) in drop zone');
-    var DropZone=document.getElementById("DropZone");
+    var DropZone = document.getElementById("DropZone");
     DropZone.classList.add("dropFile");//Добавить класс показывающий пользователю, что файл в зоне перетаскивания
     DropZone.classList.remove("dropZone");//Убрать стандартный внешний вид зоны перетаскивания
     // Запретить поведение по умолчанию (Запретить открытие файла)
@@ -38,7 +36,7 @@ function dragOverHandler(ev) {
 }
 
 function onMouseOutDropZone() {
-    var DropZone=document.getElementById("DropZone");
+    var DropZone = document.getElementById("DropZone");
     DropZone.classList.add("dropZone");
     DropZone.classList.remove("dropFile");
 }
@@ -56,8 +54,8 @@ function selectFile() {
  */
 function getSelectFile() {
     var files = this.files;
-    GLOBAL_file= files[0];
-    console.log(GLOBAL_file);
+    GLOBAL_file = files[0];
+    componentInitialization();
 }
 
 

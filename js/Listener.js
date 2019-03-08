@@ -7,12 +7,11 @@ function onLoad() {
     DropZone.addEventListener("dragleave", onMouseOutDropZone);
     DropZone.addEventListener("drop",onMouseOutDropZone);
     DropZone.addEventListener("click",selectFile);
-
-
-
     document.getElementById("Input_SelectFile").addEventListener("change", getSelectFile);
 
 
 
+    document.getElementById("SubjectsList").addEventListener("click", SelectSubject);
 
+    document.getElementById("CompetencesCurrentSubject").addEventListener("click", CompetencesInfo);
 }

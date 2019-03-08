@@ -1,6 +1,7 @@
 body {
     color: white;
     background-color: #24292d;
+    font: 14pt "Times New Roman", normal;
 }
 
 #DropZone {
@@ -41,6 +42,107 @@ body {
     display: none;
 }
 
+label{
+    display: block;
+    margin: 10px;
+}
+
+input{
+    border-radius: 10px;
+    padding-left: 3px;
+    margin: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+}
+
+input[type=number]{
+    width: 100px;
+    text-align: center;
+}
+
+input[type=text]{
+    width: 70%;
+}
+
+input:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.list{
+    height: 200px;
+    overflow-y: scroll;
+    width: 50%;
+}
+.list span {
+    display: block;
+    border: 1px solid black;
+    border-radius: 1em 1em 1em 1em;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #3b434a;
+}
+
+#SelectSubject{
+    background-color:#066115;
+    color: gold;
+    font-weight: bolder;
+}
+
+.competencesList{
+    display: flex;
+}
+.CompetencesSubject-JS{
+    margin-top: auto;
+    margin-bottom: auto;
+}
 
 
 
+
+
+
+
+/*********/
+#CurrentSelectSubject{
+    color: gold;
+    font-weight: bolder;
+}
+.smallButton{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    min-height: 30px;
+    min-width: 30px;
+    border: 1px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.smallButton:hover{
+    background-color: #c5c5c5;
+}
+
+
+/*Полоса прокрутки*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(185, 3, 0, 0.7);
+}

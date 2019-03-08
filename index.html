@@ -5,21 +5,46 @@
     <title>Title</title>
 
     <link rel="stylesheet" type="text/css" href="style/style.css"/>
-    <link rel="stylesheet" type="text/css" href="style/cat.css"/>
     <link rel="stylesheet" type="text/css" href="style/svg.css"/>
 
+    <script type="text/javascript" src="Subject.js"></script>
+    <script type="text/javascript" src="Competencies.js"></script>
     <script type="text/javascript" src="js/Listener.js"></script>
     <script type="text/javascript" src="js/Drag-and-Drop.js"></script>
+    <script type="text/javascript" src="js/Component_initialization.js"></script>
+    <script type="text/javascript" src="js/Program.js"></script>
+    <script type="text/javascript" src="js/Event.js"></script>
 
 </head>
 <body onload="onLoad()">
+<div id="StartPanelFileSelection">
+    <div class="selectFileSVG"></div>
+    <div id="DropZone" class="dropZone"></div>
+    <input id="Input_SelectFile" type="file" class="displayNone">
+</div>
 
-<div class="selectFileSVG"> </div>
-<div id="DropZone" class="dropZone"></div>
+<div id="CompleteDocument" class="displayNone">
 
-<input id="Input_SelectFile" type="file" class="displayNone">
+    <label>Направление (специальность) подготовки:&#8195;<input type="text"></label>
+    <label>Профиль (специализация) подготовки:&#8195;<input type="text"></label>
+    <label>Квалификация выпускника:&#8195;<input type="text"></label>
+    <label>Форма обучения:&#8195;<input type="text"></label>
+    <label>Год:&#8195;<input type="number" id="Input_CurrentYear"></label>
+<br>
+    Выберете предмет:
+    <div id="SubjectsList" class="list"></div>
+    <br>
+    Компетенции для "<span id="CurrentSelectSubject"></span>":
+    <div id="CompetencesCurrentSubject"></div>
+</div>
 
 
 
+
+
+
+<script>
+    componentInitialization();
+</script>
 </body>
 </html>
