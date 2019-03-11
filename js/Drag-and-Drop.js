@@ -10,15 +10,15 @@ function dropHandler(ev) {
     //Запретить поведение по умолчанию (Запретить открытие файла)
     ev.preventDefault();
     if (ev.dataTransfer.items) {
-        // Используем интерфейс DataTransferItemList для доступа к файлу
+        // *Используем интерфейс DataTransferItemList для доступа к файлу*
         // Если перетянутые элементы не являются файлами, отклоните их
         if (ev.dataTransfer.items[0].kind === 'file') {
-            var file = ev.dataTransfer.items[0].getAsFile();
+            var file = ev.dataTransfer.items[0].getAsFile();// Получить первый (и только!) Файл из объекта FileList
             GLOBAL_file = file;
             componentInitialization()
         }
     } else {
-        // Используем интерфейс DataTransferItemList для доступа к файлу
+        // *Используем интерфейс DataTransferItemList для доступа к файлу*
         GLOBAL_file = ev.dataTransfer.files[0];
         componentInitialization();
     }
@@ -57,15 +57,3 @@ function getSelectFile() {
     GLOBAL_file = files[0];
     componentInitialization();
 }
-
-
-
-
-
-
-
-
-
-
-
-

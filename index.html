@@ -2,18 +2,32 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Рабочая программа</title>
 
     <link rel="stylesheet" type="text/css" href="style/style.css"/>
     <link rel="stylesheet" type="text/css" href="style/svg.css"/>
+    <script type="text/javascript" src="js/Listener.js"></script>
+
+    <script type="text/javascript" src="js/Component_initialization.js"></script>
+    <script type="text/javascript" src="js/Drag-and-Drop.js"></script>
+
+
 
     <script type="text/javascript" src="Subject.js"></script>
     <script type="text/javascript" src="Competencies.js"></script>
-    <script type="text/javascript" src="js/Listener.js"></script>
-    <script type="text/javascript" src="js/Drag-and-Drop.js"></script>
-    <script type="text/javascript" src="js/Component_initialization.js"></script>
+
+
+
     <script type="text/javascript" src="js/Program.js"></script>
     <script type="text/javascript" src="js/Event.js"></script>
+
+    <script type="text/javascript" src="js/Create_report.js"></script>
+
+    <script src="js/libs/FileSaver.js"></script>
+    <script src="js/libs/jszip-utils.js"></script>
+    <script src="js/libs/docxgen.min.js"></script>
+
+
 
 </head>
 <body onload="onLoad()">
@@ -25,26 +39,70 @@
 
 <div id="CompleteDocument" class="displayNone">
 
-    <label>Направление (специальность) подготовки:&#8195;<input type="text"></label>
-    <label>Профиль (специализация) подготовки:&#8195;<input type="text"></label>
-    <label>Квалификация выпускника:&#8195;<input type="text"></label>
-    <label>Форма обучения:&#8195;<input type="text"></label>
-    <label>Год:&#8195;<input type="number" id="Input_CurrentYear"></label>
+    <label>Направление (специальность) подготовки:&nbsp;<input type="text"></label><br>
+    <label>Профиль (специализация) подготовки:&nbsp;<input type="text"></label><br>
+    <label>Квалификация выпускника:&nbsp;<input type="text"></label><br>
+    <label>Форма обучения:&nbsp;<input type="text"></label><br>
+    <label>Должность, инициалы и фамилия разработчика(ов) программы:&nbsp;<input type="text"></label><br>
+    <label>Протокол заседания кафедры №&nbsp;<input type="number">&nbsp;от<input type="date"></label><br>
+    <label>Год:&nbsp;<input type="number" id="Input_CurrentYear"></label>
 <br>
-    Выберете предмет:
-    <div id="SubjectsList" class="list"></div>
+
+
+
+
+
+    Предмет:&nbsp;<select id='SubjectsList' class="list"></select>
+
     <br>
-    Компетенции для "<span id="CurrentSelectSubject"></span>":
-    <div id="CompetencesCurrentSubject"></div>
+    Компетенции для "<span class="selectedSubject"></span>":
+    <span id="CompetencesCurrentSubject"></span>
+
+
+
+
+
+
+
+
+
+    <br>
+    <br>
+    <br>
+    <button id="Download">СКАЧАТЬ ФАЙЛ</button>
 </div>
+<br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>  <br>
+<br>
+<br>
 
 
 
 
 
 
-<script>
-    componentInitialization();
-</script>
 </body>
 </html>

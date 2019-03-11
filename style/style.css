@@ -43,8 +43,8 @@ body {
 }
 
 label{
-    display: block;
-    margin: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 input{
@@ -59,12 +59,12 @@ input{
 }
 
 input[type=number]{
-    width: 100px;
+    width: 200px;
     text-align: center;
 }
 
 input[type=text]{
-    width: 70%;
+    width: 700px;
 }
 
 input:focus{
@@ -73,63 +73,68 @@ input:focus{
     color: black;
 }
 
-.list{
-    height: 200px;
-    overflow-y: scroll;
-    width: 50%;
-}
-.list span {
-    display: block;
-    border: 1px solid black;
-    border-radius: 1em 1em 1em 1em;
-    padding: 5px;
-    cursor: pointer;
-    text-align: center;
-    background-color: #3b434a;
+select{
+    border-radius: 10px;
+    padding-left: 3px;
+    margin: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+
 }
 
-#SelectSubject{
-    background-color:#066115;
+select:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+
+.selectedSubject{
     color: gold;
     font-weight: bolder;
 }
 
-.competencesList{
-    display: flex;
-}
-.CompetencesSubject-JS{
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-
-
-
-
-
-
-/*********/
-#CurrentSelectSubject{
-    color: gold;
-    font-weight: bolder;
-}
-.smallButton{
-    margin-top: auto;
-    margin-bottom: auto;
+.competence {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    min-height: 30px;
-    min-width: 30px;
-    border: 1px solid black;
+    margin: 3px;
+    padding: 5px;
+    border: 2px solid #ffffff;
     border-radius: 50%;
     cursor: pointer;
+}
+.competence:hover{
+    background-color: #ffffff;
+    border-color: #b70029;
+    color: black;
+    transition-delay: 0.1s;
+}
+
+.competence:active{
+    background-color: black;
+    border-color: black;
+    color: white;
+    transition: background-color 0.01s ease;
+    transition-delay: 0s;
+}
+
+.closeCompetencesInfo {
+    display: inline-block;
+    border: 1px solid #be0000;
+    background-color: #be0000;
+    border-radius: 20%;
     margin-left: 5px;
-    margin-right: 5px;
+    padding: 1px;
+    cursor: pointer;
+    font-size: 10pt;
+
 }
-.smallButton:hover{
-    background-color: #c5c5c5;
-}
+
+
+
+
 
 
 /*Полоса прокрутки*/

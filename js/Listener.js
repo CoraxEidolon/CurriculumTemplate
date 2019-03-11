@@ -8,10 +8,20 @@ function onLoad() {
     DropZone.addEventListener("drop",onMouseOutDropZone);
     DropZone.addEventListener("click",selectFile);
     document.getElementById("Input_SelectFile").addEventListener("change", getSelectFile);
+    /////////////////////////////////////////////////////////////////////////////////////////
+
+    document.getElementById("SubjectsList").addEventListener("change",SelectSubject);
+
+    document.getElementById("CompetencesCurrentSubject").addEventListener("click",CompetencesInfo);
+
+
+  //  document.getElementById("CompetencesCurrentSubject").addEventListener("click", CompetencesInfo);
+  //  document.getElementById("Download").addEventListener("click", CreateReport);
 
 
 
-    document.getElementById("SubjectsList").addEventListener("click", SelectSubject);
 
-    document.getElementById("CompetencesCurrentSubject").addEventListener("click", CompetencesInfo);
+
+    componentInitialization();
+
 }

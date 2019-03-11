@@ -3,34 +3,9 @@
  * @constructor
  */
 function Subject() {
-    var SelectSubject = document.getElementById("SelectSubject");//Выбранный предмет
-    var CurrentSelectSubject = document.getElementById("CurrentSelectSubject");
-    var CompetencesCurrentSubject = document.getElementById("CompetencesCurrentSubject");
-    var SubjectsList = document.getElementById("SubjectsList");
-
-
-    /**
-     * Осуществляет выбор текущего предмета в меню
-     * @param Element - Элемент, на который осуществлен клик
-     * @constructor
-     */
-    this.SelectCurrentSubject = function (Element) {
-        SelectSubject.removeAttribute("id");
-        Element.id = "SelectSubject";
-        CurrentSelectSubject.innerHTML = Element.innerHTML;
-    };
-    /**
-     * Получить компетенции выбранного предмета
-     * @constructor
-     */
-    this.GetCompetences = function () {
-        var Competences = Subjects[SelectSubject.innerHTML]["Компетенции"];//Массив компетенций выбранного предмета
-        Competences = Competences.split(" ");
-        CompetencesCurrentSubject.innerHTML = "";
-        for (var i = 0; i < Competences.length; i++) {
-            CompetencesCurrentSubject.innerHTML += "<div class='competencesList'><span class='CompetencesSubject-JS'>" + Competences[i] + "</span><div class='questionSVG smallButton'></div><span></span></div>";
-        }
-    };
+    var SubjectsList = document.getElementById("SubjectsList");//Выпадающий список с названиями предметов
+    var LabelSelectedSubjects = document.getElementsByClassName("selectedSubject");//Массив содержащий метки, куда будет занесено название выбранной дисциплины
+    var CompetencesCurrentSubject = document.getElementById("CompetencesCurrentSubject");//Список компетенций выбранного предмета
 
     /**
      * Показать/скрыть информацию о компетенции
@@ -38,17 +13,13 @@ function Subject() {
      * @constructor
      */
     this.ShowHideCompetencesInfo = function (Element) {
-        var next = Element.nextElementSibling;
-        if (next.innerHTML.length > 0) {
-            next.innerHTML = "";
-            Element.classList.remove("okSVG");
-            Element.classList.add("questionSVG");
-        } else {
-            var Competence = Element.previousElementSibling.innerHTML;
-            next.innerHTML = Competencies[Competence];
-            Element.classList.remove("questionSVG");
-            Element.classList.add("okSVG");
+        var Container = document.getElementById("CompetencyInfo");
+        Container.innerHTML = Element.innerHTML + " - " + GLOBAL_Competencies[Element.innerHTML] + "<div id='CloseCompetencesInfo' class='closeCompetencesInfo' title='Скрыть подробную информацию о компетенции'>&#10060;</div>";
 
+        document.getElementById("CloseCompetencesInfo").addEventListener("click", CloseCompetencesInfo);
+        function CloseCompetencesInfo() {
+            document.getElementById("CloseCompetencesInfo").removeEventListener("click", CloseCompetencesInfo);
+            Container.innerHTML = "";
         }
     };
 
@@ -57,17 +28,43 @@ function Subject() {
      * @constructor
      */
     this.LoadListDisciplines = function () {
-        var SubjectsName = Object.keys(Subjects);
+        var SubjectsName = Object.keys(GLOBAL_Subjects);//Получить список названия предметов
         if (SubjectsName.length > 0) {
-            SubjectsList.innerHTML = "";
+            /*Создаем список предметов*/
             for (var i = 0; i < SubjectsName.length; i++) {
-                SubjectsList.innerHTML += "<span>" + SubjectsName[i] + "</span>";
+                SubjectsList.innerHTML += "<option>" + SubjectsName[i] + "</option>";
             }
-            SubjectsList.firstElementChild.id = "SelectSubject";//Делаем активной первую запись списка
-            CurrentSelectSubject.innerHTML = document.getElementById("SelectSubject").innerHTML;//Добавляем название текущий дисциплины к заголовку раздела компетенций
-            /*Получаем и выводим компетенции выбранного предмета*/
-            this.GetCompetences();
+            this.SetSubjectLabel_GetCompetences();
         }
+    };
+
+    /**
+     * Добавляет название выбранного предмета к меткам
+     * Выводит компетенции выбранного предмета
+     * @constructor
+     */
+    this.SetSubjectLabel_GetCompetences = function () {
+        /*Добавляем название текущий дисциплины к соответствующим меткам*/
+        var SelectedSubject = SubjectsList.value;
+        for (var i = 0; i < LabelSelectedSubjects.length; i++) {
+            LabelSelectedSubjects[i].innerHTML = SelectedSubject;
+        }
+        GetCompetences();
+    };
+
+    /**
+     * Получить компетенции выбранного предмета
+     * @constructor
+     */
+    function GetCompetences() {
+        var Competences = GLOBAL_Subjects[SubjectsList.value];//Массив компетенций выбранного предмета
+        Competences = Competences.split(" ");
+        CompetencesCurrentSubject.innerHTML = "";
+        for (var i = 0; i < Competences.length; i++) {
+            CompetencesCurrentSubject.innerHTML += "<div class='competence' title='Что это?'>" + Competences[i] + "</div>";
+        }
+        CompetencesCurrentSubject.innerHTML += " <div id='CompetencyInfo'></div>"
+
     };
 }
 
