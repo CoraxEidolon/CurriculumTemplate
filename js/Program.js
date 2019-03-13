@@ -14,8 +14,16 @@ function Subject() {
      */
     this.ShowHideCompetencesInfo = function (Element) {
         var Container = document.getElementById("CompetencyInfo");
-        Container.innerHTML = Element.innerHTML + " - " + GLOBAL_Competencies[Element.innerHTML] + "<div id='CloseCompetencesInfo' class='closeCompetencesInfo' title='Скрыть подробную информацию о компетенции'>&#10060;</div>";
 
+        /*Проверяем наличие выбранной компетенции*/
+        if (Element.innerHTML in GLOBAL_Competencies) {
+            Container.innerHTML = Element.innerHTML + " - " + GLOBAL_Competencies[Element.innerHTML];
+        } else {
+            Container.innerHTML = Element.innerHTML + " - К сожалению, информация по выбранной компетенции отсутствует <div class='sadSmileySVG'></div>. Проверьте наличие компетенции в файле списка компетенций  <u>Competencies</u> или корректность соотношения дисциплина-компетенция в файле <u>Subject</u>";
+        }
+        /*Добавляем "крестик" для закрытия информации по компетенции*/
+        Container.innerHTML += "<div id='CloseCompetencesInfo' class='closeCompetencesInfo closeSVG' title='Скрыть подробную информацию о компетенции'></div>";
+        /* Добавляем обработчик событий на  "крестик"*/
         document.getElementById("CloseCompetencesInfo").addEventListener("click", CloseCompetencesInfo);
         function CloseCompetencesInfo() {
             document.getElementById("CloseCompetencesInfo").removeEventListener("click", CloseCompetencesInfo);
@@ -58,15 +66,19 @@ function Subject() {
      */
     function GetCompetences() {
         var Competences = GLOBAL_Subjects[SubjectsList.value];//Массив компетенций выбранного предмета
-        Competences = Competences.split(" ");
+        Competences=Competences.trim();//Убираем лишние пробелы с начала и конца строки
+        Competences = Competences.split(/\s+/g);
         CompetencesCurrentSubject.innerHTML = "";
         for (var i = 0; i < Competences.length; i++) {
             CompetencesCurrentSubject.innerHTML += "<div class='competence' title='Что это?'>" + Competences[i] + "</div>";
         }
-        CompetencesCurrentSubject.innerHTML += " <div id='CompetencyInfo'></div>"
+        CompetencesCurrentSubject.innerHTML += "<div id='CompetencyInfo'></div>"
 
     };
 }
+
+
+
 
 
 

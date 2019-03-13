@@ -90,6 +90,27 @@ select:focus{
     background-color: #e5e5e5;
     color: black;
 }
+textarea{
+    border-radius: 10px;
+    padding-left: 3px;
+    margin: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+    width: 700px;
+    height: 200px;
+    overflow-y:auto;
+}
+
+
+textarea:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+
+}
 
 
 .selectedSubject{
@@ -122,14 +143,16 @@ select:focus{
 
 .closeCompetencesInfo {
     display: inline-block;
-    border: 1px solid #be0000;
-    background-color: #be0000;
+    border: 1px solid #9b0000;
+    background-color: #9b0000;
     border-radius: 20%;
     margin-left: 5px;
-    padding: 1px;
+    padding: 7px;
     cursor: pointer;
-    font-size: 10pt;
-
+}
+.closeCompetencesInfo:hover{
+    background-color: #ff0000;
+    border-color: #ff0000;
 }
 
 
