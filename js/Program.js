@@ -3,7 +3,7 @@
  * @constructor
  */
 function Subject() {
-    var SubjectsList = document.getElementById("SubjectsList");//Выпадающий список с названиями предметов
+    var SubjectsList = document.getElementById("Select_SubjectsList");//Выпадающий список с названиями предметов
     var LabelSelectedSubjects = document.getElementsByClassName("selectedSubject");//Массив содержащий метки, куда будет занесено название выбранной дисциплины
     var CompetencesCurrentSubject = document.getElementById("CompetencesCurrentSubject");//Список компетенций выбранного предмета
 
@@ -37,6 +37,7 @@ function Subject() {
      */
     this.LoadListDisciplines = function () {
         var SubjectsName = Object.keys(GLOBAL_Subjects);//Получить список названия предметов
+        SubjectsName=SubjectsName.sort();//Сортируем
         if (SubjectsName.length > 0) {
             /*Создаем список предметов*/
             for (var i = 0; i < SubjectsName.length; i++) {
@@ -78,7 +79,110 @@ function Subject() {
 }
 
 
+/**
+ * Класс для работы с направлениями подготовки
+ * @constructor
+ */
+function LearningDirection() {
+var ListLearningDirection=document.getElementById("Select_LearningDirection");//Список направлений подготовки
+    
+    /**
+     * Загружает направления подготовки
+     * @constructor
+     */
+    this.LoadListLearningDirection = function () {
+        for (var i = 0; i < GLOBAL_LearningDirection.length; i++) {
+            if (ErrorSearch(i) === false) {
+                ListLearningDirection.innerHTML += "<option>" + GLOBAL_LearningDirection[i]["code"] + " " + GLOBAL_LearningDirection[i]["name"] + "</option>";
+            }
+        }
+    };
+
+    /**
+     * Проверяет корректность ключей глобального массива направлений подготовки
+     * @param i - Итерация для глобального массива направления подготовки
+     * @returns {boolean}-Если ключи содержат ошибку то true, ошибок нет false
+     * @constructor
+     */
+    function ErrorSearch(i) {
+        var Error = false;
+        var LearningDirectionKeys = Object.keys(GLOBAL_LearningDirection[i]);//Получаем ключи массива
+        /*Осуществляем проверку корректности ключей массива*/
+        /*Выводим сообщения ошибки и их причину*/
+        if (LearningDirectionKeys[0] !== "code") {
+            alert("В файле 'Направления подготовки' (BD/Learning_direction) допущена ошибка при задания ключа в строке " + (i + 1) + ". Должно быть code, а не " + LearningDirectionKeys[0]);
+            Error = true;
+        }
+        if (LearningDirectionKeys[1] !== "name") {
+            alert("В файле 'Направления подготовки' (BD/Learning_direction) допущена ошибка при задания ключа в строке " + (i + 1) + ". Должно быть name, а не " + LearningDirectionKeys[1]);
+            Error = true;
+        }
+        return Error;
+    }
+}
+
+/**
+ * Класс для работы с профилями подготовки
+ * @constructor
+ */
+function TrainingProfile() {
+    var ListTrainingProfile=document.getElementById("Select_TrainingProfile");
+    //var GLOBAL_TrainingProfile=JSON.parse(Training_profile);
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Загружает список профилей обучения на форму
+     * @constructor
+     */
+    this.LoadListTrainingProfile = function () {
+        for (var i = 0; i < GLOBAL_TrainingProfile.length; i++) {
+            ListTrainingProfile.innerHTML += "<option>" + GLOBAL_TrainingProfile[i] + "</option>";
+        }
+
+    }
+
+}
+/**
+ * Класс для работы с формой обучения
+ * @constructor
+ */
+function FormStudy() {
+    var ListFormStudy=document.getElementById("Select_FormStudy");
+    /**
+     * Загружает список форм обучения на форму
+     * @constructor
+     */
+    this.LoadListFormStudy=function () {
+        for (var i = 0; i < GLOBAL_FormStudy.length; i++) {
+            ListFormStudy.innerHTML += "<option>" + GLOBAL_FormStudy[i] + "</option>";
+        }
+    }
+}
+
+
+function GraduateQualifications() {
+var ListGraduateQualifications=document.getElementById("Select_GraduateQualifications");
+
+    this.LoadList=function () {
+        for (var i = 0; i < GLOBAL_GraduateQualifications.length; i++) {
+            ListGraduateQualifications.innerHTML += "<option>" + GLOBAL_GraduateQualifications[i] + "</option>";
+        }
+    }
+
+}

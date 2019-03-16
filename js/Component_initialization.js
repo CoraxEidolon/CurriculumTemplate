@@ -11,5 +11,18 @@ function componentInitialization() {
     var LoadListDisciplines = new Subject();
     LoadListDisciplines.LoadListDisciplines();
 
+    /*Загружаем список направлений подготовки*/
+    var LoadLearningDirection=new LearningDirection();
+    LoadLearningDirection.LoadListLearningDirection();
+
+    /*Загружаем список профиля подготовки*/
+    var LoadTrainingProfile=new TrainingProfile();
+    LoadTrainingProfile.LoadListTrainingProfile();
+
+    var LoadFormStudy=new FormStudy();
+    LoadFormStudy.LoadListFormStudy();
+
+    var LoadGraduateQualifications=new GraduateQualifications();
+    LoadGraduateQualifications.LoadList();
 
 }

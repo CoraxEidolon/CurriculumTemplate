@@ -42,8 +42,7 @@ body {
     display: none;
 }
 
-label{
-    display: inline-block;
+.unitContainer{
     margin-bottom: 10px;
 }
 
