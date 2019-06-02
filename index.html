@@ -1,99 +1,22 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <title>Рабочая программа</title>
-
-    <link rel="stylesheet" type="text/css" href="style/style.css"/>
-    <link rel="stylesheet" type="text/css" href="style/svg.css"/>
-
-    <script type="text/javascript" src="BD/Subject.js"></script>
-    <script type="text/javascript" src="BD/Competencies.js"></script>
-    <script type="text/javascript" src="BD/Learning_direction.js"></script>
-    <script type="text/javascript" src="BD/Training_profile.js"></script>
-    <script type="text/javascript" src="BD/Form_study.js"></script>
-    <script type="text/javascript" src="BD/Graduate_qualifications.js"></script>
-
-
-
-
-    <script type="text/javascript" src="js/Listener.js"></script>
-    <script type="text/javascript" src="js/Component_initialization.js"></script>
-    <script type="text/javascript" src="js/Drag-and-Drop.js"></script>
-    <script type="text/javascript" src="js/Program.js"></script>
-    <script type="text/javascript" src="js/Event.js"></script>
-    <script type="text/javascript" src="js/Create_report.js"></script>
-    <script src="js/libs/FileSaver.js"></script>
-    <script src="js/libs/jszip-utils.js"></script>
-    <script src="js/libs/docxgen.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="style/Basic.css" />
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+    <link rel="stylesheet" type="text/css" href="style/svg.css" />
 
 </head>
-<body onload="onLoad()">
-<div id="StartPanelFileSelection">
-    <div class="selectFileSVG"></div>
-    <div id="DropZone" class="dropZone"></div>
-    <input id="Input_SelectFile" type="file" class="displayNone">
-</div>
 
-<div id="CompleteDocument" class="displayNone">
-
-    <div class="unitContainer">Направление подготовки:&nbsp;<select id="Select_LearningDirection"></select></div>
-    <div class="unitContainer">Профиль (специализация) подготовки:&nbsp;<select id="Select_TrainingProfile"></select></div>
-    <div class="unitContainer">Квалификация выпускника:&nbsp;<select id="Select_GraduateQualifications"></select></div>
-    <div class="unitContainer">Форма обучения:&nbsp;<select id="Select_FormStudy"></select></div>
-    <!------------------------------------------->
-
-    <label>Должность, инициалы и фамилия разработчика(ов) программы:&nbsp;<input id="Input_DevelopedBy" type="text"></label>
-    <br>
-    <label>Протокол заседания кафедры №&nbsp;<input id="Input_ProtocolNumber" type="number">&nbsp;от<input id="Input_DateMeetingDepartment" type="date"></label>
-    <br>
-    <label>Год:&nbsp;<input type="number" id="Input_CurrentYear"></label>
-    <br>
-    Предмет:&nbsp;<select id='Select_SubjectsList' class="list"></select>
-    <br>
-    Компетенции для "<span class="selectedSubject"></span>":&nbsp;<span id="CompetencesCurrentSubject"></span>
-    <br>
-    <label> Целью изучения дисциплины является:&nbsp;<input type="text" id="Input_PurposeStudy"></label>
-    <br>
-    <label>Задачами изучения дисциплины (между задачами пропуск пустая строка):<br>
-        <textarea id="ObjectivesSubject"></textarea>
-    </label>
-
-
-    <br>
-    <br>
-    <button id="Download">СКАЧАТЬ ФАЙЛ</button>
-</div>
-<br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br> <br>
-<br>
-<br>
-
-
+<body>
+    <div class="headline">Шабланизатор рабочей программы учебной дисциплины (модуля)</div>
+    <div class="indexMenuItems">
+        <div class="menuItem"> <a href="./pages/Create_curriculum.html"> &#8226; Создать учебный план</a></div>
+        <div class="menuItem"> <a href="./pages/Template_editor.html"> &#8226; Редактировать данные</a></div>
+    </div>
 
 </body>
+
 </html>

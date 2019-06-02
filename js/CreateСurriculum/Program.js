@@ -162,16 +162,18 @@ function TrainingProfile() {
  * Класс для работы с формой обучения
  * @constructor
  */
-function FormStudy() {
-    var ListFormStudy=document.getElementById("Select_FormStudy");
-    /**
-     * Загружает список форм обучения на форму
-     * @constructor
-     */
-    this.LoadListFormStudy=function () {
-        for (var i = 0; i < GLOBAL_FormStudy.length; i++) {
-            ListFormStudy.innerHTML += "<option>" + GLOBAL_FormStudy[i] + "</option>";
-        }
+class FormStudy {
+    constructor() {
+        var ListFormStudy = document.getElementById("Select_FormStudy");
+        /**
+         * Загружает список форм обучения на форму
+         * @constructor
+         */
+        this.LoadListFormStudy = function () {
+            for (var i = 0; i < GLOBAL_FormStudy.length; i++) {
+                ListFormStudy.innerHTML += "<option>" + GLOBAL_FormStudy[i] + "</option>";
+            }
+        };
     }
 }
 

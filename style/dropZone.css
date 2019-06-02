@@ -1,0 +1,53 @@
+#DropZone {
+    border-radius: 7%;
+    font: 20pt 'Segoe Print', cursive;
+    text-align: center;
+    vertical-align: middle;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    min-height: 60vh;
+}
+
+.dropZone {
+    border: 5px dashed beige;
+}
+
+.dropZone:hover {
+    border: 5px solid #0095f5;
+    background-color: rgba(0, 149, 245, 0.3);
+}
+
+.dropZone:hover:after {
+    content: "Выберете файл вручную";
+    color: black;
+    font-weight: bolder;
+    text-shadow: #ffffff 0 0 7px;
+}
+
+.dropZone:after {
+    content: "Перетащите или выберете файл шаблона документа";
+}
+
+.dropZoneJSON {
+    border: 5px dashed beige;
+}
+
+.dropZoneJSON:hover {
+    border: 5px solid #7f538e;
+    background-color: rgb(70, 28, 66);
+}
+
+.dropZoneJSON:hover:after {
+    content: "Выберете файл вручную";
+    color: black;
+    font-weight: bolder;
+    text-shadow: #ffffff 0 0 7px;
+}
+
+.dropZoneJSON:after {
+    content: "Перетащите или выберете файл шаблона документа";
+}

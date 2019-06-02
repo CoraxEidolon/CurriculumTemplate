@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head> 
+    <meta charset="UTF-8">
+    <title>Редактор шаблонов</title>
+    <link rel="stylesheet" type="text/css" href="../style/Basic.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/TemplateEditor.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/svg.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/dropZone.css"/>
+
+
+    <script type="text/javascript" src="../js/TemplateEditor/AddElement.js"></script>
+    <script type="text/javascript" src="../js/TemplateEditor/ButtonAction.js"></script>
+    <script type="text/javascript" src="../js/TemplateEditor/Listener.js"></script>
+    <script type="text/javascript" src="../js/TemplateEditor/Drag-and-Drop.js"></script>
+
+</head>
+<body>
+<div class="fileButtonContainer">
+    <div id="ImportFile" class="byttonOval">Импорт файла</div>
+    <div id="ExportFile" class="byttonOval">Экспорт файла</div>
+</div>
+
+
+<div id="StartPanelFileSelection" class="displayNone">
+        <div class="selectFileSVG"></div>
+        <div id="DropZone" class="dropZoneJSON"></div>
+        <input id="Input_SelectFile" type="file" class="displayNone">
+</div>
+
+
+<div id="PageContent">
+    <div id="ColumnLeft" class="column"></div>
+    <div id="ColumnRight" class="column"></div>
+
+
+    <div id="Other">
+        <h1>Поля для ввода:</h1>
+        <div id="ColumnLeftOther" class="column"></div>
+        <div id="ColumnRightOther" class="column"></div>
+    </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+

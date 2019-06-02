@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочая программа</title>
+    <link rel="stylesheet" type="text/css" href="../style/Basic.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/CreateСurriculum.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/svg.css"/>
+    <link rel="stylesheet" type="text/css" href="../style/dropZone.css"/>
+
+
+
+    <script type="text/javascript" src="../js/CreateСurriculum/AddElementArray.js"></script>
+    <script type="text/javascript" src="../js/CreateСurriculum/CreateСurriculum.js"></script>
+    <script type="text/javascript" src="../js/CreateСurriculum/Listener.js"></script>
+    <script type="text/javascript" src="../js/CreateСurriculum/Drag-and-Drop.js"></script>
+    
+    <script src="../js/libs/FileSaver.js"></script>
+    <script src="../js/libs/jszip-utils.js"></script>
+    <script src="../js/libs/docxgen.min.js"></script>
+
+
+</head>
+<body onload="onLoad()">
+<div id="StartPanelFileSelection">
+    <div class="selectFileSVG"></div>
+    <div id="DropZone" class="dropZone"></div>
+    <input id="Input_SelectFile" type="file" class="displayNone">
+</div>
+
+<div id="CompleteDocumentContainer" class="displayNone">
+<div id="CompleteDocument"></div>
+<br>
+<div id="CreateСurriculum" class="buttonOval">Создать документ</div>
+</div>
+</body>
+</html>

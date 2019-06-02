@@ -27,6 +27,22 @@
     transition:0.5s;
 }
 
+
+.dropZoneJSON{
+    background-image: url("../svg/drag.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+}
+.dropZoneJSON:hover {
+    background-image: url("../svg/json-file.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%;
+    transition:0.5s;
+}
+
+
 .dropFile {
     border: 5px solid #0bff43;
     background-color: rgba(11, 255, 67, 0.31);
@@ -69,7 +85,6 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 90% 90%;
-
 }
 
 .sadSmileySVG{
@@ -80,4 +95,32 @@
     padding: 12px;
     display: inline-block;
 
+}
+
+.addSVG{
+    background-image: url("../svg/add.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90% 90%;
+}
+
+.deleteSVG{
+    background-image: url("../svg/delete.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 75% 75%;
+}
+
+.saveSVG{
+    background-image: url("../svg/save.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.multiplySVG{
+    background-image: url("../svg/multiply.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90% 90%; 
 }

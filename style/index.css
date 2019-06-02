@@ -1,0 +1,25 @@
+.headline{
+    font-size: 25pt;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+    color: gold;
+}
+.menuItem{
+    margin-bottom: 10px;
+}
+.indexMenuItems a{
+    color:white;
+    text-decoration: none;
+    font-size: 20pt;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.indexMenuItems a:visited{
+    color: white;
+}
+
+.indexMenuItems a:hover{
+    box-shadow: 0 0 3pt 2pt #0c68c7;
+}

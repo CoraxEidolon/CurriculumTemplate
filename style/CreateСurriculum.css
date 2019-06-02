@@ -1,0 +1,130 @@
+.unitContainer{
+    margin-bottom: 10px;
+}
+
+input[type=number]{
+    width: 200px;
+    text-align: center;
+}
+
+input[type=text]{
+    width: 700px;
+  
+}
+
+select{
+    border-radius: 10px;
+    padding-left: 3px;
+    margin: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+}
+
+select:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+textarea{
+    border-radius: 10px;
+    padding-left: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+    overflow-y:auto;
+    min-width: 210px;
+    min-height: 55px;
+    width: 99%;
+    resize: vertical;
+}
+
+
+textarea:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+
+.section{
+    padding: 3px;
+    border: 1px solid transparent;
+    margin-bottom: 10px;
+}
+.section:hover{
+    border-radius: 10px;
+    box-shadow: 0 0 3pt 2pt #0c68c7;
+}
+
+.label{
+    display: inline-block;
+}
+
+.buttonOval{
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.buttonOval:hover{
+    background-color:rgb(175, 133, 26); 
+    box-shadow: 0 0 3pt 2pt #ef7e09;
+}
+
+
+
+.selectElem{
+    color: gold;
+    font-weight: bolder;
+}
+
+.competence {
+    display: inline-block;
+    margin: 3px;
+    padding: 5px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.competence:hover{
+    background-color: #ffffff;
+    border-color: #b70029;
+    color: black;
+    transition-delay: 0.1s;
+}
+
+.competence:active{
+    background-color: black;
+    border-color: black;
+    color: white;
+    transition: background-color 0.01s ease;
+    transition-delay: 0s;
+}
+
+
+.closeCompetencesInfo {
+    display: inline-block;
+    border: 1px solid #9b0000;
+    background-color: #9b0000;
+    border-radius: 20%;
+    margin-left: 5px;
+    padding: 7px;
+    cursor: pointer;
+}
+.closeCompetencesInfo:hover{
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+
+
+

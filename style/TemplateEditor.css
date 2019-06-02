@@ -1,0 +1,169 @@
+input[type=number]{
+    width: 200px;
+    text-align: center;
+}
+
+
+textarea{
+    border-radius: 10px;
+    padding-left: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+    overflow-y:auto;
+    min-width: 210px;
+    min-height: 55px;
+    resize: none;
+}
+
+textarea:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.textareaInput{
+    width: 270px;
+    height: 210px;
+}
+
+.textareaArray{
+    width: 95%;
+    height: 300px;
+}
+
+.textareaOtherLabel{
+    width: 95%;
+    height: 100px;
+}
+
+select{
+    border-radius: 10px;
+    padding-left: 3px;
+    margin: 3px;
+    border: 2px solid #c6c6c6;
+    background-color:transparent;
+    outline: none;
+    color: white;
+    font: 14pt "Times New Roman", normal;
+}
+
+select:focus{
+    border: 2px solid #b70029;
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.unitTemplateEditor{
+    border: 4px solid #82819c;
+    padding: 5px;
+    border-radius: 10px;
+    width: 610px;
+    margin-top: 15px;
+}
+
+.unitTemplateEditor:hover{
+    border: 4px solid #0c68c7;
+    box-shadow: 0 0 3pt 2pt #0c68c7;
+}
+
+.key{
+    display: inline-block;
+}
+
+.value{
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.section{
+    padding: 3px;
+    border: 1px solid transparent;
+    display: inline-block;
+    margin: auto;
+}
+.buttonContainer{
+    display: none;
+    vertical-align: top;
+}
+
+.section:hover{
+    background-color: #343a40;
+    border-radius: 10px;
+    border-color:black;
+}
+
+.section:hover .buttonContainer{
+    display: inline-block;
+}
+
+.roundButton{
+    border: 2px solid rgb(255, 255, 255);  
+    display: inline-block; 
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 25px;
+    margin: 2px;
+ }
+
+ .smallRoundButton{
+    border-radius: 50%;
+    border: 2px solid rgb(255, 255, 255);  
+    cursor: pointer;
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 2px;
+ }
+
+ .fileButtonContainer{
+     text-align: center;
+ }
+.byttonOval{
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid goldenrod;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.byttonOval:hover{
+    background-color:rgb(175, 133, 26); 
+}
+ 
+ .button_add:hover{ 
+    background-color:#26613e;
+    border-color: rgb(38, 255, 75); 
+ }
+
+.button_save:hover{
+    background-color:#264e61;
+    border-color: rgb(38, 157, 255);
+}
+
+.button_showHide:hover{
+    background-color:#614c26;
+    border-color: rgb(255, 186, 38);
+}
+
+
+
+.button_delete:hover{
+    background-color:#612626;
+    border-color: rgb(255, 38, 38);
+}
+
+.caption{
+    font-size: 16pt;
+    color:gold;
+    text-align: center;
+}
+
+.column{
+    display: inline-block;
+    width: 630px;
+    margin-left: 5px;
+    vertical-align: top;
+}
