@@ -3,7 +3,6 @@ input[type=number]{
     text-align: center;
 }
 
-
 textarea{
     border-radius: 10px;
     padding-left: 3px;
@@ -120,7 +119,7 @@ select:focus{
  .fileButtonContainer{
      text-align: center;
  }
-.byttonOval{
+.buttonOval{
     display: inline-block;
     padding: 10px;
     border: 2px solid goldenrod;
@@ -129,7 +128,7 @@ select:focus{
     font-weight: bold;
 }
 
-.byttonOval:hover{
+.buttonOval:hover{
     background-color:rgb(175, 133, 26); 
 }
  
@@ -148,12 +147,18 @@ select:focus{
     border-color: rgb(255, 186, 38);
 }
 
-
-
 .button_delete:hover{
     background-color:#612626;
     border-color: rgb(255, 38, 38);
 }
+
+
+.button_deleteBlock:hover{
+    background-color: rgb(100, 0, 0);
+    border-color: rgb(255, 0, 0);
+}
+
+
 
 .caption{
     font-size: 16pt;
@@ -161,9 +166,130 @@ select:focus{
     text-align: center;
 }
 
+
 .column{
     display: inline-block;
     width: 630px;
     margin-left: 5px;
     vertical-align: top;
+}
+
+.keyValueWarning{
+    font-style:italic;
+    margin-top:10px;
+    color:#1e8eff;
+}
+
+.smalFont{
+    font-size: 10.5pt;
+}
+
+.important{
+    color:gold;
+}
+
+.textInputLabel{
+    display: inline-block;
+    width: 165px;
+}
+
+.popupAddNewBlock{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+.popupContent{
+    margin: auto;
+    display: inline-block;
+    padding: 30px;
+    background-color: #2a2b2a;
+    box-shadow: 0 0 12px 2px #0cc7b6;
+    border-radius: 10px;
+}
+
+.newElementTitle{
+    color:gold;
+    text-align: center;
+    font-size: 20pt;
+    margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+.newElementSubTitle{
+    color:gold;
+    margin: 10px 0;
+    font-weight: bolder;
+}
+
+.newElementType{
+    margin-bottom:10px;
+    display: inline-block;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.newElementType:hover{
+    text-decoration:underline;
+}
+
+.subCategoryElemTypeStand{
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
+
+.subNewElementTypeSelected{
+    box-shadow: 0 0 12px 2px #0996b5;
+    border-radius: 10px;
+    background-color: #0a4f63;
+}
+
+
+.newElementTypeSelected{
+    box-shadow: 0 0 12px 2px #09b566;
+    border-radius: 10px;
+    background-color: #0a633a;
+}
+
+.closePopup{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    padding: 10px;
+    position: absolute;
+    margin-top: -40px;
+    cursor: pointer;
+    box-shadow: 0 0 9px 10px #a50707;
+    background-color: #a50707;
+}
+
+.closePopup:hover{
+    box-shadow: 0 0 9px 10px #ff0303;
+    background-color: red;
+}
+
+.closeContainer{
+    float:right;
+}
+
+.button_createNewElement{
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #09b566;
+    box-shadow: 0 0 7px 0px #09b566;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.button_createNewElement:hover{
+background-color: #09b566;
+}
+
+.btnCreateNewElemContainer{
+    margin-top: 25px;
+    text-align: center;
 }

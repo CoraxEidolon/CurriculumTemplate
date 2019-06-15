@@ -1,38 +1,34 @@
 /*Преобразовывает json в элементы для редактирования*/
 function AddElements() {
     GLOBAL_BD = JSON.parse(localStorage.getItem("CurriculumTemplat"));
+    var Values=GLOBAL_BD["Value"];
     var ColumnRight = document.getElementById("ColumnRight");
     var ColumnLeft = document.getElementById("ColumnLeft");
     ColumnLeft.innerHTML = "";
     ColumnRight.innerHTML = "";
     var currentColumn = ColumnLeft;
-    for (var GlobalKey in GLOBAL_BD) {
-        if (GlobalKey==="Other"){
-            if(GLOBAL_BD["Other"].length!==0){
-                var ColumnRightOther = document.getElementById("ColumnRightOther");
-                var ColumnLeftOther = document.getElementById("ColumnLeftOther");
-                ColumnLeftOther.innerHTML = "";
-                ColumnRightOther.innerHTML = "";
-                var currentColumn = ColumnLeftOther;         
-                for(var i=0; i<GLOBAL_BD["Other"].length; i++){
-                    currentColumn.innerHTML += AddOtherSection(GLOBAL_BD["Other"][i], i);
-                    if (currentColumn === ColumnLeftOther) {
-                        currentColumn = ColumnRightOther;
-                    } else {
-                        currentColumn = ColumnLeftOther;
-                    }
-                }
-                continue;
-            }
-        }
+    for (var i=0; i<Values.length; i++) {
         var tmp = "";
-        tmp = "<div id='" + GlobalKey + "' class='unitTemplateEditor'>";
-        tmp += "<h3>" + GLOBAL_BD[GlobalKey]["label"]["title"] + "</h3>";
-        tmp += "Имя метки:<input value='" + GLOBAL_BD[GlobalKey]["label"]["labelName"] + "' type='text' class='js_labelName'>";
-        tmp += "<br>";
+        tmp = "<div id='Element_" + i + "' class='unitTemplateEditor'>";
+        tmp += "<h3>" + Values[i]["label"]["title"] + "</h3>";
+        tmp += "<div class='textInputLabel'>Имя метки:</div><input value='" + Values[i]["label"]["labelName"] + "' type='text' class='js_labelName'><br>";    
+        tmp += "Текст перед полем ввода:<br><textarea class='textareaOtherLabel js_labelTitle'>" + Values[i]["label"]["title"] + "</textarea>";
+        if(Values[i]["label"].hasOwnProperty("textKey")&&(Values[i]["label"].hasOwnProperty("textValue"))){
+            tmp +="<div class='keyValueWarning'>Видны только в режиме редактирования:</div>";
+            tmp += "<div class='textInputLabel'>Заголовок ключа:</div><input value='" + Values[i]["label"]["textKey"] + "' type='text' class='js_labelTextKey'><br>";
+            tmp += "<div class='textInputLabel'>Заголовок значения:</div><input value='" + Values[i]["label"]["textValue"] + "' type='text' class='js_labelTextValue'><br>";
+        }
+        if (Values[i]["label"].hasOwnProperty("processingFunction")) {
+            tmp += "<div class='keyValueWarning smalFont'>Объект относится к сложным типам данных и логика его применения отличается от простых. Укажите имя функции, которая будет работать с объектом.<br>";
+            tmp += "Если функция не требуется укажите <b class='important'>null</b>.<br>";
+            tmp += "Если объект используется для подстановки в другой объект, укажите <b class='important'> \>\>имя функции</b></div>";
+            tmp += "<div class='textInputLabel'>Имя функции:</div><input value='" + Values[i]["label"]["processingFunction"] + "' type='text' class='js_processingFunction'><br>";
+        }
         tmp += "<div class='roundButton button_showHide viewSVG js_mainBtnSH' title='Показать/скрыть подробную информацию текущего блока'></div>";
+        tmp += "<div class='roundButton button_save saveSVG' title='Сохранить блок'></div>";
+        tmp += "<div class='roundButton button_deleteBlock deletePageSVG' title='Удалить блок'></div>";
         tmp += "<div class='js_contentContainer displayNone'>";
-        tmp += AddSection(GLOBAL_BD[GlobalKey]["value"], GLOBAL_BD[GlobalKey]["label"]);
+        tmp += AddSection(Values[i]["value"], Values[i]["label"]);
         tmp += "</div>";
         tmp += "<br>";
         tmp += "</div>";
@@ -43,7 +39,26 @@ function AddElements() {
             currentColumn = ColumnLeft;
         }
     }
+    var ColumnRightOther = document.getElementById("ColumnRightOther");
+    var ColumnLeftOther = document.getElementById("ColumnLeftOther");
+    ColumnLeftOther.innerHTML = "";
+    ColumnRightOther.innerHTML = "";
+    if (GLOBAL_BD.hasOwnProperty("Other")) {
+        /*Если есть "Прочее"*/
+        if (GLOBAL_BD["Other"].length > 0) {
+            var currentColumn = ColumnLeftOther;
+            for (var i = 0; i < GLOBAL_BD["Other"].length; i++) {
+                currentColumn.innerHTML += AddOtherSection(GLOBAL_BD["Other"][i], i);
+                if (currentColumn === ColumnLeftOther) {
+                    currentColumn = ColumnRightOther;
+                } else {
+                    currentColumn = ColumnLeftOther;
+                }
+            }
+        }
+    }
 }
+
 /*Добавляет элементы из секции "прочее"*/
 function AddOtherSection(value, id) {
     var result = "";
@@ -62,7 +77,8 @@ function AddOtherSection(value, id) {
         }
         selectTmp += "</select>"
         result += "Тип: " + selectTmp;
-        result+="<br><div class='roundButton button_save saveSVG'></div>";
+        result+="<br><div class='roundButton button_save saveSVG' title='Сохранить блок'></div>";
+        result+="<div class='roundButton button_deleteBlock deletePageSVG' title='Удалить блок'></div>";
         result += "</div>";
         return result;
 }
@@ -86,7 +102,6 @@ function AddSection(value, label) {
         }
         Result += multiply + "<br>";
         Result += "<textarea class='textareaArray'>" + contentTmp + "</textarea>";
-        Result += "<div class='roundButton button_save saveSVG'></div>";
     } else {
         for (var caption in value) {
             Result += "<div class='section'>";

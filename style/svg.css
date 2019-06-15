@@ -2,8 +2,8 @@
     background-image: url("../svg/hiring.svg");
     background-repeat: no-repeat;
     background-position: center;
-    width: 30%;
-    height: 30vh;
+    width: 25vh;
+    height: 25vh;
     left: 0;
     right: 0;
     margin: auto;
@@ -123,4 +123,60 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: 90% 90%; 
+}
+
+.deletePageSVG{
+    background-image: url("../svg/delete-page.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.homeSVG{
+    background-image: url("../svg/house.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.addBlockSVG{
+    background-image: url("../svg/add-file.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.outboxkSVG{
+    background-image: url("../svg/outbox.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.inboxSVG{
+    background-image: url("../svg/inbox.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.menuSVG{
+    background-image: url("../svg/menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.backToDataSVG{
+    background-image: url("../svg/accounting.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
+}
+
+.wordFileSVG{
+    background-image: url("../svg/doc.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70% 70%; 
 }

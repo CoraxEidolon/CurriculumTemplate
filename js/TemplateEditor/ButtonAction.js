@@ -21,6 +21,10 @@ function ButtonAction(event) {
     if (target.classList.contains("button_save")) {
         SaveElementsValues(target);
     }
+
+    if (target.classList.contains("button_deleteBlock")) {
+        DeleteBlock(target);
+    } 
 }
 
 /**
@@ -54,6 +58,13 @@ function ShowHideContent(btn) {
  * @param {*} btnDel -нажатая кнопка "удалить"
  */
 function DeleteElement(btnDel) {
+var unit = GetUnitContainer(btnDel, "unitTemplateEditor");
+var sectionCount=unit.getElementsByClassName("section").length;
+
+    if (sectionCount < 2) {
+        alert("Невозможно удалить все элементы объекта! Объект должен содержать хотя бы один элемент.");
+        return false;
+    }
     var del = confirm("Вы действительно хотите удалить выбранный элемент?");
     if (del) {
         var section = GetUnitContainer(btnDel, "section");
@@ -70,8 +81,9 @@ function AddNewElement(btnAdd) {
     var currentSectuon = GetUnitContainer(btnAdd, "section");
     var content = unit.getElementsByClassName("js_contentContainer")[0];
     var valueArray = false;
-    for (var firstKey in GLOBAL_BD[unit.id]["value"]) {
-        if (Array.isArray(GLOBAL_BD[unit.id]["value"][firstKey])) {
+    var id=Number(unit.id.replace(/[^\d]/g,""));
+    for (var firstKey in GLOBAL_BD["Value"][id]["value"]) {
+        if (Array.isArray(GLOBAL_BD["Value"][id]["value"][firstKey])) {
             valueArray = true;
         }
         break;
@@ -118,11 +130,11 @@ function AddNewElement(btnAdd) {
 
     var div_captionKey = document.createElement('DIV');
     div_captionKey.className = "caption";
-    div_captionKey.innerText = GLOBAL_BD[unit.id]["label"]["textKey"];
+    div_captionKey.innerText = GLOBAL_BD["Value"][id]["label"]["textKey"];
 
     var div_captionValue = document.createElement('DIV');
     div_captionValue.classList = "caption";
-    div_captionValue.innerText = GLOBAL_BD[unit.id]["label"]["textValue"];
+    div_captionValue.innerText = GLOBAL_BD["Value"][id]["label"]["textValue"];
 
     var div_multiply = document.createElement('DIV');
     div_multiply.className = "multiply multiplySVG";
@@ -173,15 +185,19 @@ function SaveElementsValues(btnSave) {
         alert("Имена меток должны быть уникальны! Проверьте выделенные элементы");
         return false;
     }
+    
     var unit = GetUnitContainer(btnSave, "unitTemplateEditor");
+    var validAllLabel = ValidationAllLabels(unit);
+    if (validAllLabel === false) {
+        return false;
+    }
     var labelName = unit.getElementsByClassName("js_labelName");
-    labelName = labelName[0]
+    labelName = labelName[0];
+    var currentId = Number(unit.id.replace(/[^\d]/g, ""));
     if (unit.id.indexOf("Other") >= 0) {
-        var currentId = unit.id;
-        currentId = Number(currentId.replace("Other_", ""));
+        /* Сохранить "Прочее  */
         var otherLabel = unit.getElementsByClassName("js_otherLabel");
         var otherType = unit.getElementsByClassName("js_otherType");
-
         var save = confirm("Выполнить сохранение раздела ?");
         if (save === true) {
             GLOBAL_BD["Other"][currentId]["label"] = otherLabel[0].value;
@@ -191,17 +207,32 @@ function SaveElementsValues(btnSave) {
         }
         return true;
     }
-    if (Array.isArray(GLOBAL_BD[unit.id]["value"])) {
+
+    if (Array.isArray(GLOBAL_BD["Value"][currentId]["value"])) {
+        /* Сохраняем массив */
+        var labelTitle = unit.getElementsByClassName("js_labelTitle");
+        labelTitle = labelTitle[0];
         var valueElement = unit.getElementsByClassName("textareaArray");
         valueElement = valueElement[0];
         var value = GetTextAreaArrayValue(valueElement.value);
-        var save = confirm("Выполнить сохранение раздела \"" + GLOBAL_BD[unit.id]["label"]["title"] + "\" ?");
+        var save = confirm("Выполнить сохранение раздела \"" + GLOBAL_BD["Value"][currentId]["label"]["title"] + "\" ?");
         if (save === true) {
-            GLOBAL_BD[unit.id]["label"]["labelName"] = labelName.value;
-            GLOBAL_BD[unit.id]["value"] = value;
+            GLOBAL_BD["Value"][currentId]["label"]["labelName"] = labelName.value;
+            GLOBAL_BD["Value"][currentId]["label"]["title"]=labelTitle.value;           
+            GLOBAL_BD["Value"][currentId]["value"] = value;
             localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
         }
     } else {
+        /* сохраняем объект */
+        var labelTitle = unit.getElementsByClassName("js_labelTitle");
+        labelTitle=labelTitle[0];
+        var labelTextKey = unit.getElementsByClassName("js_labelTextKey");
+        labelTextKey=labelTextKey[0];
+        var labelTextValue = unit.getElementsByClassName("js_labelTextValue");
+        labelTextValue=labelTextValue[0];
+        var processingFunction = unit.getElementsByClassName("js_processingFunction");
+        processingFunction = processingFunction[0];
+
         var ok = true;
         var sectionList = unit.getElementsByClassName("section");
         var Result = {};
@@ -216,13 +247,20 @@ function SaveElementsValues(btnSave) {
                 }
             } else {
                 ok = false;
-                alert("Запись \"" + keyElem.value + "\" уже существует!")
+                alert("Запись \"" + keyElem.value + "\" уже существует!");
+                return false;
             }
         }
-        var save = confirm("Выполнить сохранение раздела \"" + GLOBAL_BD[unit.id]["label"]["title"] + "\" ?");
+
+        var save = confirm("Выполнить сохранение раздела \"" + GLOBAL_BD["Value"][currentId]["label"]["title"] + "\" ?");
         if (ok === true && save === true) {
-            GLOBAL_BD[unit.id]["label"]["labelName"] = labelName.value;
-            GLOBAL_BD[unit.id]["value"] = Result;
+            GLOBAL_BD["Value"][currentId]["label"]["labelName"] = labelName.value;
+           
+            GLOBAL_BD["Value"][currentId]["label"]["title"] = labelTitle.value;
+            GLOBAL_BD["Value"][currentId]["label"]["textKey"] = labelTextKey.value;
+            GLOBAL_BD["Value"][currentId]["label"]["textValue"] = labelTextValue.value;
+            GLOBAL_BD["Value"][currentId]["label"]["processingFunction"] = processingFunction.value;
+            GLOBAL_BD["Value"][currentId]["value"] = Result;
             localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
         }
     }
@@ -247,8 +285,10 @@ function ShowImportFile() {
         alert("В базе данных отсутствуют значения! Экспортируйте данные из файла.");
         ok = false;
     }
-    if (buttonImportFile.innerText === "Импорт файла") {
-        buttonImportFile.innerText = "Перейти к данным";
+    if (buttonImportFile.classList.contains("inboxSVG")   ) {
+        buttonImportFile.classList.remove("inboxSVG");
+        buttonImportFile.classList.add("backToDataSVG");
+        buttonImportFile.title="Вернуться к редактированию данных";
     }
     if (PanelFileSelection.classList.contains("displayNone")) {
         PanelFileSelection.classList.remove("displayNone");
@@ -259,7 +299,11 @@ function ShowImportFile() {
         ok = false;
     }
     if (ok === true) {
-        buttonImportFile.innerText = "Импорт файла";
+        if (buttonImportFile.classList.contains("backToDataSVG")) {
+            buttonImportFile.classList.remove("backToDataSVG");
+            buttonImportFile.classList.add("inboxSVG");
+            buttonImportFile.title="Импорт файла";
+        }
         AddElements();
         if (PanelFileSelection.classList.contains("displayNone") === false) {
             PanelFileSelection.classList.add("displayNone")
@@ -331,3 +375,234 @@ function ValidationLabelName() {
     }
     return ok;
 }
+
+function AddNewBlock(){
+    var buf = "<div class='closeContainer'>";
+    buf += "<div id='ClosePopupCreateNewElement' class='closePopup closeSVG'></div>";
+    buf += "</div>";
+    buf += "<div class='newElementTitle'>Добавление нового блока</div>";
+    buf += "<div class='textInputLabel'>Имя метки:</div><input id='NewElementLabel' class='js_labelName'><br>";
+    buf += "<div class='textInputLabel'>Заголовок:</div><input id='NewElementTitle'><br>";
+    buf += "<div class='newElementSubTitle'>Тип элемента:</div>";
+    buf += "<div id='NewElementTypeContainer'>";
+    buf += "<div id='ElementTypeStandard' class='newElementType newElementTypeSelected'>&#8226; Присутствует список допустимых значений</div><br>";
+    buf += "<div id='SubCategoryElemTypeStand' class='subCategoryElemTypeStand'>";
+    buf += "<div class='newElementSubTitle'>Тип списка значений:</div>"
+    buf += "<div id='SubCategoryArray' class='newElementType subNewElementTypeSelected'>&#9675; Массив (список значений)</div><br>"
+    buf += "<div id='SubCategoryObject' class='newElementType'>&#9675; Объект (ключ-значение)</div>"
+    buf += "</div>";
+    buf += "<div id='ElementTypeOther' class='newElementType'>&#8226; Пользователь должен сам ввести значение</div><br>";
+    buf += "</div>";
+    buf += "<div class='btnCreateNewElemContainer'>";
+    buf += "<div id='CreateNewElement' class='button_createNewElement'>Создать элемент</div>";
+    buf += "</div>";
+    document.getElementById("PopupAddNewBlockContent").innerHTML=buf;
+    document.getElementById("PopupAddNewBlock").style.display="flex";
+    document.getElementById("NewElementTypeContainer").addEventListener("click",SelectedNewElementType);
+    document.getElementById("ClosePopupCreateNewElement").addEventListener("click",ClosePopupCreateNewElement);
+    document.getElementById("CreateNewElement").addEventListener("click", CreateNewElement);
+    
+}
+
+function ClosePopupCreateNewElement(){
+    document.getElementById("NewElementTypeContainer").removeEventListener("click",SelectedNewElementType);
+    document.getElementById("CreateNewElement").removeEventListener("click", CreateNewElement);
+    document.getElementById("ClosePopupCreateNewElement").removeEventListener("click",ClosePopupCreateNewElement);
+    document.getElementById("PopupAddNewBlock").style.display="none"; 
+    document.getElementById("PopupAddNewBlockContent").innerHTML="";
+    ValidationLabelName();
+}
+
+function SelectedNewElementType(event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement;
+    if (target.id==="ElementTypeStandard" || target.id==="ElementTypeOther") {
+        var selected = document.getElementById("NewElementTypeContainer").getElementsByClassName("newElementTypeSelected");
+        while (true) {
+            if (selected.length <= 0) {
+                break;
+            }
+            selected[0].classList.remove("newElementTypeSelected");
+        }
+        target.classList.add("newElementTypeSelected");
+        if(target.id==="ElementTypeStandard"){
+            document.getElementById("SubCategoryElemTypeStand").style.display="block";
+        }else{
+            document.getElementById("SubCategoryElemTypeStand").style.display="none";
+        }
+    }
+
+    if (target.id==="SubCategoryArray" || target.id==="SubCategoryObject") {
+        var selected = document.getElementById("NewElementTypeContainer").getElementsByClassName("subNewElementTypeSelected");
+        while (true) {
+            if (selected.length <= 0) {
+                break;
+            }
+            selected[0].classList.remove("subNewElementTypeSelected");
+        }
+        target.classList.add("subNewElementTypeSelected");
+    }
+}
+
+function CreateNewElement() {
+    var valid = ValidationLabelName();
+    if (valid === false) {
+        alert("Имена меток должны быть уникальны! Проверьте выделенные элементы");
+        return false;
+    }
+    var newElementLabel = document.getElementById("NewElementLabel");
+    var newElementTitle = document.getElementById("NewElementTitle");
+    if (/^[\w]{3,25}$/g.test(newElementLabel.value) === false) {
+        alert("В поле  \"Имя метки\"  разрешены только латинские символы любого регистра, цифры и нижнее подчеркивание. Пробелы не допустимы. Допустимая длинна поля от 3 до 25 символов включительно.");
+        return false;
+    }
+
+    if (newElementTitle.value.length < 3 || newElementTitle.value.length > 150) {
+        alert("Длинна поля \"Заголовок\" должно быть больше 3 символов и не превышать 150 символов!");
+        return false;
+    }
+
+    var standard = document.getElementById("ElementTypeStandard");
+    var other = document.getElementById("ElementTypeOther");
+    if (standard.classList.contains("newElementTypeSelected")) {
+        var subArray = document.getElementById("SubCategoryArray");
+        var subObject = document.getElementById("SubCategoryObject");
+        if (subArray.classList.contains("subNewElementTypeSelected")) {
+            var bufObj_Array = {
+                "value": [],
+                "label": {
+                    "labelName": newElementLabel.value,
+                    "title": newElementTitle.value
+                }
+            };
+            GLOBAL_BD["Value"].push(bufObj_Array);
+            localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
+            AddElements();
+            ClosePopupCreateNewElement();
+
+        } else {
+            if (subObject.classList.contains("subNewElementTypeSelected")) {
+                var bufObj_Object = {
+                    "value": { "Ключ": "Значение" },
+                    "label": {
+                        "labelName": newElementLabel.value,
+                        "title": newElementTitle.value,
+                        "textKey": "Заголовок ключа",
+                        "textValue": "Заголовок значения",
+                    }
+                };
+                GLOBAL_BD["Value"].push(bufObj_Object);
+                localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
+                AddElements();
+                ClosePopupCreateNewElement();
+            }
+        }
+    } else {
+        if (other.classList.contains("newElementTypeSelected")) {
+            var bufObj_Other = {
+                "label": newElementTitle.value,
+                "type": 0,
+                "labelName": newElementLabel.value
+            }
+            GLOBAL_BD["Other"].push(bufObj_Other);
+            localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
+            AddElements();
+            ClosePopupCreateNewElement();
+
+        }
+    }
+
+/*Показываем кнопку "экспорт файла" если в localStorage что то есть*/
+    if (localStorage.getItem("CurriculumTemplat") !== null) {
+        var buttonExportFile = document.getElementById("ExportFile");
+        if (buttonExportFile.classList.contains("displayNone")) {
+            buttonExportFile.classList.remove("displayNone");
+        }
+    }
+}
+
+function DeleteBlock(btnDeleteBlock) {
+    var unit = GetUnitContainer(btnDeleteBlock, "unitTemplateEditor");
+    var currentId = Number(unit.id.replace(/[^\d]/g, ""));
+    if (unit.id.indexOf("Other") >= 0) {
+        /* Удалить "Прочее  */
+        var deleteBlockOther = confirm("Выполнить удаление раздела ?");
+        if (deleteBlockOther) {
+            GLOBAL_BD["Other"].splice(currentId, 1);
+            localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
+            AddElements();
+        }
+        return true;
+    } else {
+        var deleteBlock = confirm("Выполнить удаление раздела \"" + GLOBAL_BD["Value"][currentId]["label"]["title"] + "\" ?");  
+        if (deleteBlock) {
+            GLOBAL_BD["Value"].splice(currentId, 1);
+            localStorage.setItem("CurriculumTemplat", JSON.stringify(GLOBAL_BD));
+            AddElements();
+        }  
+    }
+}
+
+function ValidationAllLabels(unit) {
+    var labelName = unit.getElementsByClassName("js_labelName");
+    if (labelName.length > 0) {
+        labelName = labelName[0];
+        if (/^[\w]{3,25}$/g.test(labelName.value) === false) {
+            alert("В поле  \"Имя метки\"  разрешены только латинские символы любого регистра, цифры и нижнее подчеркивание. Пробелы не допустимы. Допустимая длинна поля от 3 до 25 символов включительно.");
+            return false;
+        }
+    }
+
+    if (unit.id.indexOf("Other") >= 0) {
+        var labelTitleOther = unit.getElementsByClassName("js_otherLabel");
+        if (labelTitleOther.length > 0) {
+            labelTitleOther = labelTitleOther[0];
+            if (labelTitleOther.value.length < 3 || labelTitleOther.value.length > 150) {
+                alert("Длинна поля \"Текст перед полем ввода\" должно быть больше 3 символов и не превышать 150 символов!");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    var labelTitle = unit.getElementsByClassName("js_labelTitle");
+    if (labelTitle.length > 0) {
+        labelTitle = labelTitle[0];
+        if (labelTitle.value.length < 3 || labelTitle.value.length > 150) {
+            alert("Длинна поля \"Текст перед полем ввода\" должно быть больше 3 символов и не превышать 150 символов!");
+            return false;
+        }
+    }
+
+    var labelTextKey = unit.getElementsByClassName("js_labelTextKey");
+    if (labelTextKey.length > 0) {
+        labelTextKey = labelTextKey[0];
+        if (labelTextKey.value.length < 3 || labelTextKey.value.length > 50) {
+            alert("Длинна поля \"Заголовок ключа\" должно быть больше 3 символов и не превышать 50 символов!");
+            return false;
+        }
+    }
+
+    var labelTextValue = unit.getElementsByClassName("js_labelTextValue");
+    if (labelTextValue.length > 0) {
+        labelTextValue = labelTextValue[0];
+        if (labelTextValue.value.length < 3 || labelTextValue.value.length > 50) {
+            alert("Длинна поля \"Заголовок значения\" должно быть больше 3 символов и не превышать 50 символов!");
+            return false;
+        }
+    }
+
+    var processingFunction = unit.getElementsByClassName("js_processingFunction");
+    if (processingFunction.length > 0) {
+        processingFunction = processingFunction[0];
+        if (/^(>>)?[\w]{3,25}$/g.test(processingFunction.value) === false) {
+            alert("В поле  \"Имя функции\"  разрешены только латинские символы любого регистра, цифры и нижнее подчеркивание. Пробелы не допустимы. Допустимая длинна поля от 3 до 25 символов включительно.");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+   

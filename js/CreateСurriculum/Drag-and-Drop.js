@@ -57,4 +57,3 @@ function getSelectFile() {
     GLOBAL_file = files[0];
     ShowDataSelectionOrFileSelection("data");
 }
-

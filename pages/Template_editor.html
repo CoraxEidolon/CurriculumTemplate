@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="../style/svg.css"/>
     <link rel="stylesheet" type="text/css" href="../style/dropZone.css"/>
 
-
     <script type="text/javascript" src="../js/TemplateEditor/AddElement.js"></script>
     <script type="text/javascript" src="../js/TemplateEditor/ButtonAction.js"></script>
     <script type="text/javascript" src="../js/TemplateEditor/Listener.js"></script>
@@ -16,23 +15,32 @@
 
 </head>
 <body>
-<div class="fileButtonContainer">
-    <div id="ImportFile" class="byttonOval">Импорт файла</div>
-    <div id="ExportFile" class="byttonOval">Экспорт файла</div>
-</div>
-
-
+    <table class="menu">
+        <tr>
+            <th class="menuSVG"></th>
+        </tr>
+        <tr>
+            <td class="homeSVG" onclick="location.href='../index.html'" title="Главная"></td>
+        </tr>
+        <tr>
+            <td id="ImportFile" class="inboxSVG" title="Импорт файла"></td>
+        </tr>
+        <tr>
+            <td id="ExportFile" class="outboxkSVG" title="Экспорт файла"></td>
+        </tr>
+        <tr>
+            <td id="AddNewElement" class="addBlockSVG " title="Добавить новый блок"></td>
+        </tr>
+    </table>
 <div id="StartPanelFileSelection" class="displayNone">
         <div class="selectFileSVG"></div>
         <div id="DropZone" class="dropZoneJSON"></div>
         <input id="Input_SelectFile" type="file" class="displayNone">
 </div>
 
-
 <div id="PageContent">
     <div id="ColumnLeft" class="column"></div>
     <div id="ColumnRight" class="column"></div>
-
 
     <div id="Other">
         <h1>Поля для ввода:</h1>
@@ -40,9 +48,9 @@
         <div id="ColumnRightOther" class="column"></div>
     </div>
 </div>
-
-
-
+<div id="PopupAddNewBlock" class="popupAddNewBlock">
+    <div id="PopupAddNewBlockContent" class="popupContent"></div>
+</div>
 
 
 

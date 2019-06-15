@@ -10,7 +10,7 @@
 
 
 
-    <script type="text/javascript" src="../js/CreateСurriculum/AddElementArray.js"></script>
+    <script type="text/javascript" src="../js/CreateСurriculum/AddElement.js"></script>
     <script type="text/javascript" src="../js/CreateСurriculum/CreateСurriculum.js"></script>
     <script type="text/javascript" src="../js/CreateСurriculum/Listener.js"></script>
     <script type="text/javascript" src="../js/CreateСurriculum/Drag-and-Drop.js"></script>
@@ -22,6 +22,20 @@
 
 </head>
 <body onload="onLoad()">
+
+    <table class="menu">
+        <tr>
+            <th class="menuSVG"></th>
+        </tr>
+        <tr>
+            <td class="homeSVG" onclick="location.href='../index.html'" title="Главная"></td>
+        </tr>
+        <tr>
+            <td id="CreateСurriculum" class="wordFileSVG displayNone" title="Создать документ"></td>
+        </tr>
+    
+    </table>
+
 <div id="StartPanelFileSelection">
     <div class="selectFileSVG"></div>
     <div id="DropZone" class="dropZone"></div>
@@ -30,8 +44,6 @@
 
 <div id="CompleteDocumentContainer" class="displayNone">
 <div id="CompleteDocument"></div>
-<br>
-<div id="CreateСurriculum" class="buttonOval">Создать документ</div>
 </div>
 </body>
 </html>
