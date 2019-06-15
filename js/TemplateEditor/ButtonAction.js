@@ -489,6 +489,7 @@ function CreateNewElement() {
                         "title": newElementTitle.value,
                         "textKey": "Заголовок ключа",
                         "textValue": "Заголовок значения",
+                        "processingFunction":"null"
                     }
                 };
                 GLOBAL_BD["Value"].push(bufObj_Object);
